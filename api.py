@@ -22,9 +22,8 @@ def parse_text_to_dict(text):
                 current_record = {}
             
             value = line.split('=', 1)[-1]
-            value = value.replace('\r', '')  # Remover caracteres "\r"
+            value = value.replace('\r', '') 
             
-            # Remover caracteres especiais da chave usando expressão regular
             key = re.sub(r'\[.*\]|=.*', '=', field)
             
             current_record[key] = value
@@ -35,7 +34,6 @@ def parse_text_to_dict(text):
     return {'found': len(records), 'records': records}
 
 
-# Converter o dicionário para JSON formatado
 def convert_to_json(data):
     return json.dumps(data, indent=4)
 
