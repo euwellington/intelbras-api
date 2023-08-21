@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para iniciar o aplicativo Flask
-CMD ["python", "app.py"]
+CMD ["python", "api.py"]
