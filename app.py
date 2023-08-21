@@ -2,8 +2,12 @@ import requests
 from flask import Flask
 import re
 import json
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+
+CORS(app, origins=["http://localhost:3000", "http://example.com"])
 
 def parse_text_to_dict(text):
     records = []
@@ -41,7 +45,7 @@ def convert_to_json(data):
 def hello():
     return "Application intelbras API - ON"
 
-@app.route('/get_all_users/<device_ip>/<device_port>/<username>/<password>/')
+@app.route('/get_users/<device_ip>/<device_port>/<username>/<password>')
 def get_all_users(device_ip, device_port, username, password):
     url = "http://{}:{}/cgi-bin/recordFinder.cgi?action=doSeekFind&name=AccessControlCard&count=4300".format(
         str(device_ip),
