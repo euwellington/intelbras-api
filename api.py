@@ -37,6 +37,10 @@ def parse_text_to_dict(text):
 def convert_to_json(data):
     return json.dumps(data, indent=4)
 
+@app.route('/')
+def hello():
+    return "Application intelbras API - ON"
+
 @app.route('/get_all_users/<device_ip>/<device_port>/<username>/<password>/')
 def get_all_users(device_ip, device_port, username, password):
     url = "http://{}:{}/cgi-bin/recordFinder.cgi?action=doSeekFind&name=AccessControlCard&count=4300".format(
@@ -97,4 +101,4 @@ def get_temperature(device_ip, device_port, username, password):
         return "Failed to fetch software version."
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
